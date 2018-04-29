@@ -93,9 +93,6 @@ function loadAsset (opt) {
   if (typeof opt === 'string') {
     opt = { url: opt };
   }
-  if (!opt.url) {
-    return Promise.reject(new Error('When using loadAsset(), you must specify a URL or descriptor of the asset to load'));
-  }
   return getLoader(opt).then(function (loader) {
     opt = assign({}, opt);
     delete opt.type;
@@ -113,12 +110,18 @@ function getLoader (opt) {
     } else {
       type = type.toLowerCase();
     }
+    if (!opt.url) {
+      return Promise.reject(new Error('When using loadAsset(), you must specify a URL or descriptor of the asset to load'));
+    }
     for (i = 0; i < loaders.length; i++) {
       loader = loaders[i];
       if (loader.key === type) return Promise.resolve(loader.load);
     }
     return Promise.reject(new Error('Could not find an asset loader by the key "' + opt.type + '"'));
   } else {
+    if (!opt.url) {
+      return Promise.reject(new Error('When using loadAsset(), you must specify a URL or descriptor of the asset to load'));
+    }
     var ext = extname(opt.url);
     if (!ext) return Promise.reject(new Error('No extension found for input URL "' + opt.url + '", try to specify a { type } such as "image" or "text"'));
     for (i = 0; i < loaders.length; i++) {

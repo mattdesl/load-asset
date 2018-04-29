@@ -8,7 +8,7 @@ const OBJ = async opt => {
   return parseOBJ(text);
 };
 
-async function preload () {
+const preload = async () => {
   // Now we have a custom OBJ asset alongside the rest of our preloader
   const assets = await load.any({
     cube: { url: 'fixtures/cube.obj', type: OBJ },
@@ -19,6 +19,6 @@ async function preload () {
   });
   console.log('Parsed OBJ:', assets.cube.positions, assets.cube.cells);
   return assets;
-}
+};
 
 preload();

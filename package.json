@@ -21,7 +21,8 @@
   },
   "scripts": {
     "test": "budo test/index.js -o --dir test/ --live",
-    "example": "budo test/custom-type.js -o --dir test/ --live"
+    "example": "budo test/custom-type.js -o --dir test/ --live",
+    "example-font": "budo test/custom-font.js -o --dir test/ --live"
   },
   "keywords": [
     "mp3",
