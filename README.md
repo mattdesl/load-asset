@@ -53,7 +53,7 @@ async function render () {
     data: { url: 'path/to/api', type: 'json' },
     arrayBuffer: { url: 'file.buf', type: 'binary' },
     document: { url: 'file.pdf', type: 'blob' },
-    video: 'file.mp4'
+    video: { url: 'file.mp4', muted: true }
   });
 
   console.log(assets.diffuse); // <img> tag
