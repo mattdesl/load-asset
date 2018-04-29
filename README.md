@@ -78,9 +78,15 @@ Loads the `item` asset, which is either a string URL or an object with propertie
 If `item` is an object, you can specify a list of options like so:
 
 - `url` (required) - the URL to the asset
-- `type` - the loader type, can be `'image'`, `'audio'`, etc (see [full list](#loaders) below). If not specified, it will be inferred from file extension if possible. If no loader is found by the extension, or no extension exists, the returned Promise will reject with an error.
+- `type` - the loader type name, can be `'image'`, `'audio'`, etc (see [full list](#loaders) below). If not specified, it will be inferred from file extension if possible. If no loader is found by the extension, or no extension exists, the returned Promise will reject with an error.
 
-Loaders may have individual options that can also be passed down into them.
+Loaders may have individual options that can also be passed down into them, such as `crossOrigin` on Image:
+
+```js
+const image = await load({ url: 'foo.png', crossOrigin: 'Anonymous' });
+```
+
+You can also pass a function to `type` if you have a custom loader, see [test/custom-type.js](./test/custom-type.js) for an example loading the Wavefront OBJ format. This way you can integrate other game/app-specific asset types into a single sequence of progress events.
 
 #### `assets = load.all(items, [progress])`
 

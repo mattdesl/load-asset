@@ -99,17 +99,23 @@ function loadAsset (opt) {
   return getLoader(opt).then(function (loader) {
     opt = assign({}, opt);
     delete opt.type;
-    return loader.load(opt);
+    return loader(opt);
   });
 }
 
 function getLoader (opt) {
   var i, loader;
-  var type = opt.type ? opt.type.toLowerCase() : null;
+  var type = opt.type ? opt.type : null;
   if (type) {
+    // Allow user to specify custom type function
+    if (typeof type === 'function') {
+      return Promise.resolve(type);
+    } else {
+      type = type.toLowerCase();
+    }
     for (i = 0; i < loaders.length; i++) {
       loader = loaders[i];
-      if (loader.key === type) return Promise.resolve(loader);
+      if (loader.key === type) return Promise.resolve(loader.load);
     }
     return Promise.reject(new Error('Could not find an asset loader by the key "' + opt.type + '"'));
   } else {
@@ -121,7 +127,7 @@ function getLoader (opt) {
       var isMatch = typeof loader.match === 'function'
         ? loader.match(ext)
         : loader.match.test(ext);
-      if (isMatch) return Promise.resolve(loader);
+      if (isMatch) return Promise.resolve(loader.load);
     }
     return Promise.reject(new Error('Could not infer an asset loader from the file type "' + ext + '", try specifying { type } such as "image" or "text"'));
   }

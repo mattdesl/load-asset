@@ -154,3 +154,22 @@ test('array should emit progress', async t => {
     t.equal(ev.count, ++curCount);
   });
 });
+
+test('custom loader type', async t => {
+  t.plan(5);
+
+  const customLoader = (opt) => {
+    t.equal(opt.foo, 'bar');
+    return Promise.resolve(opt.url.toUpperCase());
+  };
+  let curCount = 0;
+  const results = await loader.any([
+    { url: 'foobar', type: customLoader, foo: 'bar' },
+    'fixtures/test.txt',
+    'fixtures/baboon.png'
+  ], ev => {
+    t.equal(ev.count, ++curCount);
+  });
+
+  t.equal(results[0], 'FOOBAR');
+});

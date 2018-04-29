@@ -16,10 +16,12 @@
   },
   "devDependencies": {
     "budo": "^11.2.0",
+    "parse-wavefront-obj": "^1.0.3",
     "tape": "^4.9.0"
   },
   "scripts": {
-    "test": "budo test/index.js -o --dir test/ --live"
+    "test": "budo test/index.js -o --dir test/ --live",
+    "example": "budo test/custom-type.js -o --dir test/ --live"
   },
   "keywords": [
     "mp3",
