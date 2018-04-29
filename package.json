@@ -1,0 +1,42 @@
+{
+  "name": "load-asset",
+  "version": "1.0.0",
+  "description": "Loads a single or multiple assets and returns a promise.",
+  "main": "index.js",
+  "license": "MIT",
+  "author": {
+    "name": "Matt DesLauriers",
+    "email": "dave.des@gmail.com",
+    "url": "https://github.com/mattdesl"
+  },
+  "dependencies": {
+    "browser-media-mime-type": "^1.0.0",
+    "object-assign": "^4.1.1",
+    "xhr": "^2.4.1"
+  },
+  "devDependencies": {
+    "budo": "^11.2.0",
+    "tape": "^4.9.0"
+  },
+  "scripts": {
+    "test": "budo test/index.js -o --dir test/ --live"
+  },
+  "keywords": [
+    "mp3",
+    "jpg",
+    "jpeg",
+    "image",
+    "loader",
+    "loading",
+    "assets",
+    "loaders"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mattdesl/load-asset.git"
+  },
+  "homepage": "https://github.com/mattdesl/load-asset",
+  "bugs": {
+    "url": "https://github.com/mattdesl/load-asset/issues"
+  }
+}
