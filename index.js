@@ -1,15 +1,6 @@
+var loaders = require('./loaders');
 var assign = require('object-assign');
 var noop = function () {};
-
-var loaders = [
-  require('./loaders/json'),
-  require('./loaders/text'),
-  require('./loaders/image'),
-  require('./loaders/audio'),
-  require('./loaders/video'),
-  require('./loaders/binary'),
-  require('./loaders/blob')
-];
 
 module.exports = loadAsset;
 
