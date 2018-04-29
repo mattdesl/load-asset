@@ -10,7 +10,7 @@ module.exports = function (opt) {
     image.onerror = function onError () {
       if (finished) return;
       finished = true;
-      reject(new Error('Error loading image at "' + opt.url + '"'));
+      reject(new Error('Error while loading image at ' + opt.url));
     };
     if (opt.crossOrigin) image.crossOrigin = opt.crossOrigin;
     image.src = opt.url;

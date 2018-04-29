@@ -38,7 +38,7 @@ module.exports = function createMediaLoader (type, createElement) {
         media.onerror = function onError (er) {
           if (finished) return;
           finished = true;
-          reject(new Error('Error loading ' + type + ' at "' + opt.url + '"'));
+          reject(new Error('Error while loading ' + type + ' at ' + opt.url));
         };
 
         // pass through media properties if defined
