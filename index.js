@@ -101,6 +101,7 @@ function getLoader (opt) {
     } else {
       type = type.toLowerCase();
     }
+    // User specified an explicit type, use that.
     if (!opt.url) {
       return Promise.reject(new Error('When using loadAsset(), you must specify a URL or descriptor of the asset to load'));
     }
@@ -110,6 +111,7 @@ function getLoader (opt) {
     }
     return Promise.reject(new Error('Could not find an asset loader by the key "' + opt.type + '"'));
   } else {
+    // User didn't specify type, try to infer from file extension
     if (!opt.url) {
       return Promise.reject(new Error('When using loadAsset(), you must specify a URL or descriptor of the asset to load'));
     }
