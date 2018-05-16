@@ -146,15 +146,15 @@ async function start () {
 If you pass a Promise to the load funtion, it will simply be returned. This allows for nesting features, for example:
 
 ```js
-const assets = loader.all({
+loader.all({
   tiles: loader.all([ 'a.png', 'b.png', 'c.png' ]),
   group: loader.all({
     iconA: 'bar.png',,
     iconB: 'foo.png'
   })
+}).then(assets => {
+  console.log(assets.tiles[0], assets.group.iconA.width);
 });
-
-console.log(assets.tiles[0], assets.group.iconA.width);
 ```
 
 ## Loaders
