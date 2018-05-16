@@ -173,3 +173,23 @@ test('custom loader type', async t => {
 
   t.equal(results[0], 'FOOBAR');
 });
+
+test('should handle nested loading', t => {
+  t.plan(3);
+  loader.any({
+    a: 'fixtures/test.txt',
+    tiles: loader.any({
+      baboon: 'fixtures/baboon.png'
+    }),
+    other: loader.any([
+      'fixtures/foo.json',
+      'fixtures/test.txt'
+    ])
+  }).then(result => {
+    t.equal(result.a, 'hello, world!');
+    t.deepEqual(result.other, [
+      { hello: 'world' }, 'hello, world!'
+    ]);
+    t.equal(result.tiles.baboon.width, 128);
+  });
+});

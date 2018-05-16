@@ -1,5 +1,6 @@
 var loaders = require('./loaders');
 var assign = require('object-assign');
+var isPromise = require('is-promise');
 var noop = function () {};
 
 module.exports = loadAsset;
@@ -84,6 +85,8 @@ function loadAsset (opt) {
   if (typeof opt === 'string') {
     opt = { url: opt };
   }
+  // If it's a promise, assume nested features...
+  if (isPromise(opt)) return opt;
   return getLoader(opt).then(function (loader) {
     opt = assign({}, opt);
     delete opt.type;

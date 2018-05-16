@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "browser-media-mime-type": "^1.0.0",
+    "is-promise": "^2.1.0",
     "object-assign": "^4.1.1",
     "xhr": "^2.4.1"
   },
